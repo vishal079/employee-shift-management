@@ -1,0 +1,90 @@
+<html>
+
+<head>
+
+</head>
+<header>
+  <h1>Employee Shift Management</h1>
+</header>
+<div>
+  <h2>Add Employee</h2>
+  <form [formGroup]="employeeShiftForm" (ngSubmit)="onSubmit()">
+    <table>
+      <tr>
+        <td>Employee Name</td>
+        <td>
+          <input type="text" name="Name" formControlName="Name">
+          <div *ngIf="employeeShiftForm.controls.Name.touched && employeeShiftForm.controls.Name.errors?.required">
+            <span>Please enter name.</span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Employee Type</td>
+        <td>
+          <select id="idEmpType" formControlName="Type" style="width: 100%;">
+            <option Value="1">Manager</option>
+            <option Value="2">Plant Head</option>
+            <option Value="3">Supervisor</option>
+            <option Value="4">Labour</option>
+          </select>
+          <div *ngIf="employeeShiftForm.controls.Type.touched && employeeShiftForm.controls.Type.errors?.required">
+            <span>Please select Type.</span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Employee Shift</td>
+        <td>
+          <select id="idEmpShift" formControlName="Shift" style="width: 100%;">
+            <option Value="1">First Shift</option>
+            <option Value="2">Second Shift</option>
+            <option Value="3">Third Shift</option>
+          </select>
+          <div *ngIf="employeeShiftForm.controls.Shift.touched && employeeShiftForm.controls.Shift.errors?.required">
+            <span>Please select Shift.</span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Shift Date</td>
+        <td>
+          <input type="date" name="EmployeeDateOfJoin" formControlName="ShiftDate" style="width: 100%;">
+          <div
+            *ngIf="employeeShiftForm.controls.ShiftDate.touched && employeeShiftForm.controls.ShiftDate.errors?.required">
+            <span>Please select Shift Date.</span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <input type="button" name="EmployeeDateOfJoin" value="Cancel">
+          <button type="submit">Submit</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+<div>
+  <h2>List of employee</h2>
+  <table border="1">
+    <tr>
+      <th>No</th>
+      <th>Name</th>
+      <th>Employee Type</th>
+      <th>Shift</th>
+      <th>Date Of Join</th>
+    </tr>
+    <tr *ngFor="let employee of lstEmployee; let i = index">
+      <td>{{i + 1}}</td>
+      <td>{{employee.Name}}</td>
+      <td>{{employee.Type}}</td>
+      <td>{{employee.Shift}}</td>
+      <td>{{employee.ShiftDate}}</td>
+    </tr>
+  </table>
+</div>
+<footer>
+  <span>Footer Text!</span>
+</footer>
+</html>
